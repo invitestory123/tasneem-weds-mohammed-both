@@ -67,7 +67,7 @@ Configured in `editable/wedding-data.js`:
 - `rsvp.deadline`: Date by which to reply (`"Saturday, September 11, 2027"`)
 
 #### For Guests:
-Guests submit their RSVP via **WhatsApp** (sent directly to `+16478247786`) or **Email** (sent to `Modada1523@gmail.com`), entering their Full Name, Email Address, Attendance, and Guest Count.
+Guests submit their RSVP via **WhatsApp** (sent directly to `+16478247786`) or **Email** (sent to `Modada1523@gmail.com`), entering their Full Name, Email Address, Attendance, and Guest Count. Messages automatically include full itinerary and venue details for both **Darees Mubarak** (Sept 25, Richmond Hill) and **Wedding Reception** (Sept 26, Terrace Event Venue, Concord).
 
 #### For the Client (Private Host Portal):
 The client/host can access the private Host Portal by opening the link with `?admin=true` (e.g. `https://.../?admin=true#rsvp`) or clicking the discreet "Host Portal" link in the footer:

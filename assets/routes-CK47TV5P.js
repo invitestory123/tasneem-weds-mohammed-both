@@ -59,7 +59,8 @@ function W_RSVP(){
     saveEntry("WhatsApp");
     let isYes = attendance === "yes";
     let lines = [
-      "🌙 *Darees Mubarak RSVP — " + coupleName + "* 🌙",
+      "✨ *RSVP: Darees Mubarak & Wedding Reception* ✨",
+      "*" + coupleName + "*",
       "",
       "*Guest Name:* " + guestName.trim(),
       guestEmail.trim() ? ("*Guest Email:* " + guestEmail.trim()) : "",
@@ -68,6 +69,16 @@ function W_RSVP(){
     if (isYes) lines.push("*Number of Guests:* " + guestCount);
     if (phone.trim()) lines.push("*Contact:* " + phone.trim());
     if (wishes.trim()) lines.push("*Dua & Wishes:* " + wishes.trim());
+    lines.push("");
+    lines.push("📍 *Celebration Details & Venues:*");
+    lines.push("1️⃣ *Darees Mubarak*");
+    lines.push("   📅 Saturday, 25 September 2027 · 7:00 PM");
+    lines.push("   🕌 Dawoodi Bohra Al Masjid Al Saifee");
+    lines.push("   📍 8929 Bayview Ave, Richmond Hill, ON L4B 4W4");
+    lines.push("2️⃣ *Wedding Reception*");
+    lines.push("   📅 Sunday, 26 September 2027 · 7:00 PM – 1:00 AM");
+    lines.push("   🥂 Terrace Event Venue");
+    lines.push("   📍 1680 Creditstone Rd, Concord, ON L4K 5T4");
     lines.push("");
     lines.push("Eagerly awaiting the auspicious Darees and joyous Reception celebrations!");
 
@@ -90,21 +101,38 @@ function W_RSVP(){
     }
     saveEntry("Email");
     let isYes = attendance === "yes";
-    let subject = "Darees Mubarak RSVP: " + guestName.trim() + " - " + (isYes ? "Joyfully Accepts" : "Regretfully Declines");
+    let subject = "RSVP: Darees Mubarak & Wedding Reception — " + guestName.trim() + " (" + (isYes ? "Joyfully Accepts" : "Regretfully Declines") + ")";
     let bodyLines = [
-      "Darees Mubarak RSVP — " + coupleName,
-      "Events: Darees Mubarak & Wedding Reception",
-      "Date: " + (data.dateLabel || "Saturday, September 25, 2027 at 7:00 PM"),
-      "Venue: " + (data.venue ? data.venue.name : "Dawoodi Bohra Al Masjid Al Saifee Anjuman-e-Burhani (Toronto)"),
+      "RSVP: DAREES MUBARAK & WEDDING RECEPTION",
+      "Celebrations for: " + coupleName,
+      "========================================",
       "",
+      "GUEST RSVP DETAILS:",
+      "----------------------------------------",
       "Guest Name: " + guestName.trim(),
       "Guest Email: " + guestEmail.trim(),
-      "Response: " + (isYes ? "Joyfully Accepts" : "Regretfully Declines")
+      "Response: " + (isYes ? "Joyfully Accepts (With Barakah)" : "Regretfully Declines"),
     ];
     if (isYes) bodyLines.push("Number of Guests Attending: " + guestCount);
     if (phone.trim()) bodyLines.push("Contact Phone: " + phone.trim());
-    if (wishes.trim()) bodyLines.push("Dua & Wishes: " + wishes.trim());
+    if (wishes.trim()) bodyLines.push("Heartfelt Dua & Wishes: " + wishes.trim());
     bodyLines.push("");
+    bodyLines.push("========================================");
+    bodyLines.push("EVENT DETAILS & ITINERARY:");
+    bodyLines.push("========================================");
+    bodyLines.push("1. DAREES MUBARAK");
+    bodyLines.push("   Date & Time: Saturday, September 25, 2027 at 7:00 PM");
+    bodyLines.push("   Venue: Dawoodi Bohra Al Masjid Al Saifee Anjuman-e-Burhani (Toronto)");
+    bodyLines.push("   Address: 8929 Bayview Ave, Richmond Hill, ON L4B 4W4, Canada");
+    bodyLines.push("   Program: Darees Mubarak followed by Khushi nu Jaman & blessings.");
+    bodyLines.push("");
+    bodyLines.push("2. WEDDING RECEPTION");
+    bodyLines.push("   Date & Time: Sunday, September 26, 2027 at 7:00 PM – 1:00 AM");
+    bodyLines.push("   Venue: Terrace Event Venue");
+    bodyLines.push("   Address: 1680 Creditstone Rd, Concord, ON L4K 5T4, Canada");
+    bodyLines.push("   Program: Cocktails, dinner & celebrations to honor the newlyweds.");
+    bodyLines.push("");
+    bodyLines.push("----------------------------------------");
     bodyLines.push("Submitted on: " + new Date().toLocaleString());
 
     let mailtoUrl = "mailto:" + targetEmail + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(bodyLines.join("\n"));
@@ -188,8 +216,23 @@ function W_RSVP(){
       let emails = list.map(i => (i.email || "").trim()).filter(e => e && e.includes("@") && e !== "-");
       let uniqueEmails = Array.from(new Set(emails));
       let bccList = uniqueEmails.join(",");
-      let subject = "Reminder: Auspicious Darees Mubarak of Tasneem & Mohammed — Sept 25, 2027";
-      let body = "Dear Guests,\n\nThis is a warm reminder for the upcoming auspicious Darees Mubarak of Tasneem & Mohammed!\n\nDate: Saturday, September 25, 2027 at 7:00 PM\nVenue: Dawoodi Bohra Al Masjid Al Saifee Anjuman-e-Burhani (Toronto)\n8929 Bayview Ave, Richmond Hill, ON L4B 4W4\nProgram: Darees Mubarak followed by Khushi nu Jaman & blessings.\n\nWe eagerly await your gracious presence and heartfelt prayers!\n\nWith love and duas,\nTasneem & Mohammed and Families";
+      let subject = "Reminder: Auspicious Darees Mubarak & Wedding Reception of " + coupleName + " — Sept 25 & 26, 2027";
+      let body = "Dear Guests,\n\nThis is a warm reminder for the upcoming auspicious Darees Mubarak and joyous Wedding Reception celebrations of " + coupleName + "!\n\n" +
+        "========================================\n" +
+        "EVENT DETAILS & ITINERARY\n" +
+        "========================================\n\n" +
+        "1. DAREES MUBARAK\n" +
+        "Date: Saturday, September 25, 2027 at 7:00 PM\n" +
+        "Venue: Dawoodi Bohra Al Masjid Al Saifee Anjuman-e-Burhani (Toronto)\n" +
+        "Address: 8929 Bayview Ave, Richmond Hill, ON L4B 4W4, Canada\n" +
+        "Program: Darees Mubarak followed by Khushi nu Jaman & blessings.\n\n" +
+        "2. WEDDING RECEPTION\n" +
+        "Date: Sunday, September 26, 2027 at 7:00 PM – 1:00 AM\n" +
+        "Venue: Terrace Event Venue\n" +
+        "Address: 1680 Creditstone Rd, Concord, ON L4K 5T4, Canada\n" +
+        "Program: Cocktails, dinner & celebrations to honor the newlyweds.\n\n" +
+        "We eagerly await your gracious presence, warmth, and heartfelt prayers!\n\n" +
+        "With love and duas,\n" + coupleName + " and Families";
       let mailtoUrl = "mailto:" + targetEmail + "?bcc=" + encodeURIComponent(bccList) + "&subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       window.location.href = mailtoUrl;
     } catch(e) {
